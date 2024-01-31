@@ -1,0 +1,23 @@
+<form action="" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="Name" id="name" formControlName="name">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name="Email" id="email" formControlName="email">
+    </div>
+    <div>
+        <label for="birthdate">Birthdate</label>
+        <input type="date" name="Birthdate" id="birthdate" formControlName="birthdate">
+    </div>
+    <div>
+        <label for="phone">Phone</label>
+        <input type="text" name="Phone" id="phone" maxlength="9" formControlName="phone">
+    </div>
+    <div>
+        <label for="taxnumber">Tax number</label>
+        <input type="text" name="Tax number" id="taxnumber" formControlName="taxnumber">
+    </div>
+    <button type="submit" [disabled]="!formGroup.valid">Submit</button>
+</form>
