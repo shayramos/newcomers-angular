@@ -17,7 +17,16 @@
     </div>
     <div>
         <label for="taxnumber">Tax number</label>
-        <input type="text" name="Tax number" id="taxnumber" formControlName="taxnumber">
+        <input type="text" name="Tax number" id="taxnumber" maxlength="9" formControlName="taxnumber">
     </div>
-    <button type="submit" [disabled]="!formGroup.valid">Submit</button>
+    <div>
+        <app-custom-dropdown
+            [label]="'Country'"
+            [options]="dropDownOpt"
+            [isRequired]="true"
+            [control]="formGroup.controls.country"
+            >
+        </app-custom-dropdown>
+    </div>
+    <button type="submit">Submit</button>
 </form>
