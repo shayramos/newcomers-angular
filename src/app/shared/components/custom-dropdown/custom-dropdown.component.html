@@ -1,5 +1,5 @@
-<label for="{{label}}-custom-dropdown">{{label}}</label>
-<select id="{{label}}-custom-dropdown" #mySelect (change)="select(mySelect.value)">
+<label for="{{label}}-custom-dropdown">{{label}}: </label>
+<select id="{{label}}-custom-dropdown" #mySelectComponent (change)="select(mySelectComponent.value)">
     <option *ngFor="let opt of options" [value]="opt.code">
         {{opt.name}}
     </option>
