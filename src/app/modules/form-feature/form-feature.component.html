@@ -1,25 +1,29 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <div>
+    <div class="field">
         <label for="name">Name: </label>
         <input type="text" name="Name" id="name" formControlName="name">
     </div>
-    <div>
+    <div class="field">
         <label for="email">Email: </label>
         <input type="email" name="Email" id="email" formControlName="email">
     </div>
-    <div>
+    <div class="field">
         <label for="birthdate">Birthdate: </label>
         <input type="date" name="Birthdate" id="birthdate" formControlName="birthdate">
     </div>
-    <div>
+    <div class="field">
         <label for="phone">Phone: </label>
-        <input type="text" name="Phone" id="phone" maxlength="9" formControlName="phone">
+        <input type="text" name="Phone" id="phone" maxlength="9"
+            onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+            formControlName="phone">
     </div>
-    <div>
+    <div class="field">
         <label for="taxnumber">Tax Number: </label>
-        <input type="text" name="Tax number" id="taxnumber" maxlength="9" formControlName="taxnumber">
+        <input type="text" name="Tax number" id="taxnumber" maxlength="9"
+            onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+            formControlName="taxnumber">
     </div>
-    <div>
+    <div class="field">
         <app-custom-dropdown
             [label]="'Country'"
             [options]="options"
@@ -27,5 +31,5 @@
         >
         </app-custom-dropdown>
     </div>
-    <button type="submit">Submit</button>
+    <button id="btn-submit" type="submit" class="submit-btn">Submit</button>
 </form>

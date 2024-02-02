@@ -10,5 +10,5 @@ import { FormFeatureComponent } from './modules/form-feature/form-feature.compon
   styleUrl: './app.component.sass'
 })
 export class AppComponent {
-  title = 'newcomers';
+  title = 'Newcomers exercise';
 }

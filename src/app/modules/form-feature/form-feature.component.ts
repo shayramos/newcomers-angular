@@ -9,14 +9,15 @@ import { CustomDropdownComponent, DropdownType } from '../../shared/components/c
   templateUrl: './form-feature.component.html',
   styleUrl: './form-feature.component.sass'
 })
+
 export class FormFeatureComponent {
 
   formGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     birthdate: new FormControl('', [Validators.required, this.dateValidator()]),
-    phone: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-    taxnumber: new FormControl('', [Validators.required, this.NIFValidator()]), // TODO: Permitir digitar apenas números
+    phone: new FormControl('', [Validators.required]),
+    taxnumber: new FormControl('', [Validators.required, this.NIFValidator()]),
     country: new FormControl('', Validators.required),
   })
 
