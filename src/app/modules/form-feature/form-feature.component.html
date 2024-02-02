@@ -22,10 +22,9 @@
     <div>
         <app-custom-dropdown
             [label]="'Country'"
-            [options]="dropDownOpt"
-            [isRequired]="true"
-            [control]="formGroup.controls.country"
-            >
+            [options]="options"
+            formControlName="country"
+        >
         </app-custom-dropdown>
     </div>
     <button type="submit">Submit</button>

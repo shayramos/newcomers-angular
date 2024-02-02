@@ -1,29 +1,46 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, Input, Provider, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+
+const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => CustomDropdownComponent),
+  multi: true,
+};
 
 @Component({
   selector: 'app-custom-dropdown',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './custom-dropdown.component.html',
+  providers: [COUNTRY_CONTROL_VALUE_ACCESSOR],
   styleUrl: './custom-dropdown.component.sass'
 })
-export class CustomDropdownComponent implements OnInit {
+
+export class CustomDropdownComponent implements ControlValueAccessor {
 
   @Input() label = 'Label'
   @Input() options = [] as DropdownType[]
-  @Input() control = new FormControl()
-  @Input() isRequired = false;
 
-  ngOnInit(): void {
-    console.log(this.control)
-    if (this.isRequired) {
-      this.control.setValidators(Validators.required)
-    }
+  private onTouched!: Function;
+  private onChanged!: Function;
+
+  select(code: string) {
+    this.onTouched();
+    this.onChanged(code);
+  }
+
+  writeValue(value: string): void { }
+
+  registerOnChange(fn: any): void {
+    this.onChanged = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 }
+
 export interface DropdownType {
-  id: number
+  code: string
   name: string
 }

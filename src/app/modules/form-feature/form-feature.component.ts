@@ -11,10 +11,6 @@ import { CustomDropdownComponent, DropdownType } from '../../shared/components/c
   styleUrl: './form-feature.component.sass'
 })
 export class FormFeatureComponent {
-  dropDownOpt = [
-    { id: 0, name: 'Japão' },
-    { id: 1, name: 'Indonésia' }
-  ] as DropdownType[];
 
   formGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -25,20 +21,31 @@ export class FormFeatureComponent {
     country: new FormControl('', Validators.required),
   })
 
-  constructor(private nifValidatorService: NifValidatorService) { }
+  // TODO: Marcar country vermelho
+  // TODO: The "Tax number" field only accepts valid portuguese Individual Identification Number (Número de Identificação Fiscal (NIF) )
+  // TODO: Erro no console
+
+  // constructor(private nifValidatorService: NifValidatorService) { 
+  //   this.formGroup?.valueChanges?.subscribe(console?.info);
+  // }
+
   // Every field should use native input elements and are required.
   // ok The "Email" field only accepts valid emails.
   // ok The "Birthdate" field does not accept dates in the futures.
   // ok The "Phone" field only accepts 9 digit numbers.
   // ok When submitting, the fields with invalid values should appear with a red background.
   // ok If all fields are valid, the page should refresh.
-  
-  // Build a custom Dropdown component that implements Angular's ControlValueAccessor interface.
-  // Add a new field "Country" into the form, which uses the custom Dropdown component.
-  // The "Country" field is required.
-  
-  // The "Tax number" field only accepts valid portuguese Individual Identification Number (Número de Identificação Fiscal (NIF) )
-  
+  // ok Build a custom Dropdown component that implements Angular's ControlValueAccessor interface.
+  // ok Add a new field "Country" into the form, which uses the custom Dropdown component.
+  // ok The "Country" field is required.
+
+  protected options = [
+    { code: '', name: '' },
+    { code: 'JP', name: 'Japão' },
+    { code: 'IN', name: 'Indonésia' },
+    { code: 'BR', name: 'Brasil' }
+  ] as DropdownType[];
+
   onSubmit(): void {
     // TODO: Unsubiscribe
     // this.nifValidatorService.getNIF('320121704').subscribe((response: any) => {
@@ -54,7 +61,7 @@ export class FormFeatureComponent {
     return (control: AbstractControl): {[key: string]: any} | null => {
       const today = new Date().getTime();
   
-      if(!(control && control.value)) {
+      if (!(control && control.value)) {
         return null;
       }
   
