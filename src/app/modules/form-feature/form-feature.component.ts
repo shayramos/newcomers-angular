@@ -36,7 +36,7 @@ export class FormFeatureComponent {
 
   private NIFValid(nif: string): boolean {
     if (nif?.length !== 9)
-    return false
+      return false
     
     const controlDigt = Number(nif.at(8))
     const arrNif = nif.split('')
